@@ -1,2 +1,2 @@
 # Affirmation-Journal
-GitHub repo for our website, offering downloadable PDF sheets combining affirmations and journal prompts for digital note-taking apps (e.g., Goodnotes), and linking to our physical notebooks available via Amazon KDP.
+Here, we sell affirmation and journal prompt sheet  in PDF format, compatible with apps like Goodnotes. We also give link to our physical notebooks available for purchase through Amazon KDP. 
