@@ -7,7 +7,14 @@
     <title>Affirmation Website</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-   
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&family=EB+Garamond:wght@400;700&family=Oswald:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Lora:wght@400;700&family=Poppins:wght@400;600;700&family=Montserrat:wght@400;700&family=Roboto+Slab:wght@400;700&family=Indie+Flower&family=Dancing+Script:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
 
     <style>
         /* CSS Variables for Dynamic Theming */
@@ -18,22 +25,7 @@
             --prompt-font: 'Poppins', sans-serif;
         }
 
-        /* Base Styles (Small Devices - Default) */
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--body-bg-color);
-        }
 
-        .container {
-            text-align: center;
-            flex-grow: 1;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
 
         /* Brand and Navbar Toggle Container */
         .brand-div {
@@ -41,15 +33,19 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            margin-bottom: 0.2in;
             width: 100%;
             margin-left: auto;
             margin-right: auto;
+            width: 90%;
+        }
+
+        .change-div {
+            padding-right: 0.1in;
         }
 
         .brand-name {
-            font-family:Georgia, 'Times New Roman', Times, serif cursive;
-            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif cursive;
+            font-size: 22px;
             background: linear-gradient(to right, #007bff, #8a2be2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -196,7 +192,7 @@
         }
 
         /* Affirmation Card Styles */
-        .affirmation-card {
+        .affirmation-card-main {
             margin-top: 0.1in;
             margin-left: auto;
             margin-right: auto;
@@ -211,30 +207,8 @@
             text-align: center;
         }
 
-        .affirmation-text {
-            font-family: var(--affirmation-font);
-            font-style: normal;
-            font-size: 2rem;
-            line-height: 1.6;
-            color: #000;
-            margin-bottom: 0;
-        }
-
-        .journal-content-card {
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            padding: 20px;
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        .journal-prompt-text {
-            font-family: var(--prompt-font);
-            font-size: 1.1rem;
-            line-height: 1.5;
-            color: #000;
-            margin-bottom: 0;
-        }
+    
+       
 
         /* Custom Change Button Styling */
         .custom-change-button {
@@ -275,9 +249,12 @@
             animation: spin 1s linear infinite;
         }
 
-        #collapse-nav-div {
-            margin-top: 0.3in;
+
+
+        .main-container {
+            width: 100%;
         }
+
 
         @keyframes spin {
             0% {
@@ -292,28 +269,37 @@
         /* Medium Devices (Tablets, 768px and up) */
         @media (min-width: 768px) {
             .brand-div {
-                width: 35%;
+                width: 100%;
             }
 
             .col-segment {
                 flex: 1 1 calc(33.333% - 10px);
             }
 
-            .affirmation-card {
-                width: 70%;
+            .affirmation-card-main {
+                width: 100%;
+            }
+
+            .main-container {
+                width: 95%;
+                margin: auto 0;
             }
         }
 
         /* Large Devices (Desktops, 992px and up) */
         @media (min-width: 992px) {
             .brand-div {
-                width: 30%;
+                width: 100%;
             }
 
-            .affirmation-card {
-                width: 70%;
+            .affirmation-card-main {
+                width: 100%;
             }
 
+            .main-container {
+                width: 95%;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -323,7 +309,7 @@
         <div class="loader"></div>
     </div>
 
-    <div class="container">
+    <div class="main-container">
         <div class="brand-div">
             <h1 class="brand-name">Affirzone</h1>
             <button class="navbar-toggler" type="button" id="navbar-toggler">
@@ -374,14 +360,14 @@
             </div>
         </div>
 
-        <div class="affirmation-card">
+        <div class="affirmation-card-main">
             <div class="change-div text-end mb-2">
                 <button class="custom-change-button mt-3" id="change-button">Change</button>
             </div>
             <div id="affirmation-card-container">
                 <div class="affirmation-content-card-container">
                     <p class="affirmation-text" id="affirmation-text"></p>
-                    <div class="journal-content-card" id="journal-content-card">
+                    <div class="journal-div" id="journal-div">
                         <p class="journal-prompt-text" id="journal-prompt-text"></p>
                     </div>
                 </div>
@@ -515,7 +501,7 @@
                 rawHtml = `
                     <div class="affirmation-content-card-container">
                         <p class="affirmation-text" id="affirmation-text"></p>
-                        <div class="journal-content-card" id="journal-content-card">
+                        <div class="journal-div" id="journal-div">
                             <p class="journal-prompt-text" id="journal-prompt-text"></p>
                         </div>
                     </div>
@@ -525,9 +511,9 @@
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = rawHtml;
 
-            const affirmationElement = tempDiv.querySelector('#affirmation-text');
-            const journalPromptElement = tempDiv.querySelector('#journal-prompt-text');
-            const journalContentCard = tempDiv.querySelector('#journal-content-card');
+            const affirmationElement = tempDiv.querySelector('.affirmation-text');
+            const journalPromptElement = tempDiv.querySelector('.journal-text');
+            const journalDiv = tempDiv.querySelector('.journal-div');
 
             if (affirmationElement) {
                 affirmationElement.textContent = affirmationText;
@@ -537,9 +523,11 @@
                 journalPromptElement.textContent = journalPromptText;
             }
 
-            if (journalContentCard) {
-                journalContentCard.style.display = journalPromptToggle.checked ? 'block' : 'none';
+            if (journalDiv) {
+                // Ensure the ID is present, as the toggle function relies on it.
+                journalDiv.id = 'journal-div';
             }
+
 
             return tempDiv.innerHTML;
         }
@@ -588,6 +576,9 @@
             const selectedDesignKey = selectedDesignDisplay.getAttribute('data-design-key');
             const newCardHtml = generateCardHtml(selectedDesignKey, affirmation, journalPrompt);
             affirmationCardContainer.innerHTML = newCardHtml;
+
+            // Immediately apply the toggle state after the new card is loaded
+            updateJournalPromptVisibility();
         }
 
         // New function to update only the card's design
@@ -596,6 +587,16 @@
             const currentJournalPromptText = document.getElementById('journal-prompt-text').textContent;
             const newCardHtml = generateCardHtml(designKey, currentAffirmationText, currentJournalPromptText);
             affirmationCardContainer.innerHTML = newCardHtml;
+            // Immediately apply the toggle state after the new card is loaded
+            updateJournalPromptVisibility();
+        }
+
+        // New function to handle immediate visibility change
+        function updateJournalPromptVisibility() {
+            const journalDiv = document.getElementById('journal-div');
+            if (journalDiv) {
+                journalDiv.style.display = journalPromptToggle.checked ? 'block' : 'none';
+            }
         }
 
         // --- Event Listeners (inside DOMContentLoaded for full DOM readiness) ---
@@ -665,10 +666,8 @@
             // --- Event Listeners ---
             journalPromptToggle.addEventListener('change', function () {
                 localStorage.setItem('journalPromptToggle', this.checked);
-                const journalCard = document.getElementById('journal-content-card');
-                if (journalCard) {
-                    journalCard.style.display = this.checked ? 'block' : 'none';
-                }
+                // Call the new function to immediately update visibility
+                updateJournalPromptVisibility();
             });
 
             // Toggle the custom dropdown list
