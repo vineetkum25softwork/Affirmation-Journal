@@ -25,6 +25,9 @@
             --prompt-font: 'Poppins', sans-serif;
         }
 
+        body {
+            background-color: #fdfdfd;
+        }
 
 
         /* Brand and Navbar Toggle Container */
@@ -207,8 +210,8 @@
             text-align: center;
         }
 
-    
-       
+
+
 
         /* Custom Change Button Styling */
         .custom-change-button {
@@ -256,6 +259,10 @@
         }
 
 
+        .affirmation-div {
+            min-height: 60vh;
+        }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -277,12 +284,16 @@
             }
 
             .affirmation-card-main {
-                width: 100%;
+                width: 70%;
             }
 
             .main-container {
                 width: 95%;
                 margin: auto 0;
+            }
+
+            .affirmation-div {
+                min-height: 60vh;
             }
         }
 
@@ -293,12 +304,16 @@
             }
 
             .affirmation-card-main {
-                width: 100%;
+                width: 60%;
             }
 
             .main-container {
                 width: 95%;
                 margin: 0 auto;
+            }
+
+            .affirmation-div {
+                min-height: 65vh;
             }
         }
     </style>
@@ -407,8 +422,8 @@
                 name: 'Warm Tones',
                 palette: ['#fdf8c6', '#ea580c', '#fff']
             },
-            'cool-tones': {
-                name: 'Cool Tones',
+            'black-white-tones': {
+                name: 'Black White Tones',
                 palette: ['#c7ebff', '#2563eb', '#fff']
             },
             'nature-tones': {
