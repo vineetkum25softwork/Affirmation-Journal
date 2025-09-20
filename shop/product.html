@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Affirmation Journal - Buy Paperback</title>
+  <style>
+    /* Reset */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 24px 20px;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    header img {
+      max-width: 180px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.1);
+      border-radius: 8px;
+    }
+
+    header h1 {
+      font-weight: 700;
+      color: #111;
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      margin-bottom: 0.75rem;
+    }
+
+    header p {
+      color: #555;
+      max-width: 520px;
+      margin: 0 auto 1.75rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 500;
+    }
+
+    /* Main layout */
+    .main-content {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .info-column {
+      flex: 1 1 45%;
+      background: #fff;
+      padding: 24px 32px;
+      border-radius: 12px;
+      box-shadow: 0 2px 20px rgb(0 0 0 / 0.05);
+    }
+
+    .preview-column {
+      flex: 1 1 55%;
+    }
+
+    .preview-column h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #222;
+    }
+
+    iframe.preview-embed {
+      width: 100%;
+      height: 650px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgb(0 0 0 / 0.1);
+      border: none;
+    }
+
+    /* Mobile inline preview section before Features & Benefits */
+    .inline-preview-mobile {
+      display: none;
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 15px rgb(0 0 0 / 0.1);
+    }
+
+    .inline-preview-mobile h2 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .inline-preview-mobile iframe {
+      width: 100%;
+      height: 320px;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 0 15px rgb(0 0 0 / 0.1);
+    }
+
+    /* Amazon style CTA */
+    a.cta,
+    .sticky-cta {
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      background-color: #FF9900;
+      /* Amazon orange */
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgb(255 153 0 / 0.6);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    a.cta:hover,
+    .sticky-cta:hover {
+      background-color: #E68A00;
+      /* Darker Amazon orange */
+      box-shadow: 0 6px 14px rgb(230 138 0 / 0.8);
+    }
+
+    /* Content styling */
+    .info-column h3,
+    .inline-preview-mobile h2,
+    .preview-column h2,
+    .faq-section h3 {
+      color: #222;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+    }
+
+    .main-content .info-column p,
+    ul.bullet-points li,
+    .faq-section dl dd {
+      font-size: 17px;
+      color: #353535;
+      line-height: 1.5;
+    }
+
+    ul.bullet-points {
+      list-style-type: disc;
+      padding-left: 1.25rem;
+    }
+
+    ul.bullet-points li {
+      margin-top: 0.2in;
+      font-weight: 500;
+    }
+
+
+    .faq-section dl dt {
+      font-weight: 700;
+      font-size:18px;
+      margin-top: 1.25rem;
+      margin-bottom: 0.25rem;
+      color: #333;
+    }
+
+    .faq-section dl dd {
+      margin-left: 0;
+      margin-bottom: 1.25rem;
+      font-size: 18px;
+      color: #424242;
+    }
+
+    .trust-section {
+      text-align: center;
+      margin: 2.5rem 0 3rem;
+      font-size: clamp(0.85rem, 1.5vw, 1rem);
+      color: #666;
+    }
+
+    /* Sticky Bottom CTA */
+    .sticky-cta {
+      position: fixed;
+      left: 10;
+      right: 0;
+      bottom: 0;
+      padding: 16px 24px;
+      background-color: #FF9900;
+      color: white;
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-align: center;
+      cursor: pointer;
+      z-index: 1200;
+      box-shadow: 0 -4px 10px rgb(255 153 0 / 0.75);
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    .sticky-cta.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Desktop Floating CTA */
+    @media (min-width: 992px) {
+      .sticky-cta {
+        width: auto;
+        max-width: 220px;
+        border-radius: 40px 0 0 40px;
+        bottom: 20px;
+        right: 20px;
+        left: auto;
+        padding: 14px 36px;
+        box-shadow: 0 6px 12px rgb(255 153 0 / 0.85);
+      }
+    }
+
+    /* Responsive for layout and preview */
+    @media (max-width: 991px) {
+      .main-content {
+        display: block;
+      }
+
+      .info-column {
+        width: 100%;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .preview-column {
+        display: none;
+      }
+
+      .inline-preview-mobile {
+        display: block;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .inline-preview-mobile {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <h1>30 affirmations with guided prompts</h1>
+      <p>for instant boost your mood, reflect, and write freely.</p>
+    </header>
+    <br><br><br>
+    <!-- Inline preview for mobile -->
+    <section class="inline-preview-mobile">
+      <h2>Preview Notebook</h2>
+      <iframe src="amazon_promo_rgb.pdf" title="Journal Preview" allowfullscreen></iframe>
+    </section>
+
+    <div class="main-content">
+      <div class="info-column">
+
+        <h3 class="explain-point">Features & Benefits</h3>
+        <ul class="bullet-points">
+          <li>30 uplifting affirmations + guided journal prompts</li>
+          <li>Minimalist black & white design for clear focus</li>
+          <li>Large US Letter size, perfect for handwriting</li>
+          <li>Ideal for self-care, gifts, or daily inspiration</li>
+        </ul>
+
+        <h3 class="explain-point" style="padding-top: 0.7in;">When to Use This Journal</h3>
+        <ul class="bullet-points">
+          <li>Whenever you need an instant boost of positivity or motivation</li>
+          <li>Start your day on an optimistic note</li>
+          <li>During breaks for calm and clarity</li>
+          <li>When feeling stressed, anxious, or needing mindfulness</li>
+        </ul>
+
+        <h3 class="explain-point" style="padding-top: 0.7in;">How to Use This Journal</h3>
+        <p>Pick any affirmation that resonates with you. Reflect on the accompanying journal prompt, then write your
+          thoughts freely on the next page. No rules—just positive reflection.</p>
+
+        <h3 class="explain-point" style="padding-top: 0.7in;">Physical Journal Details</h3>
+        <ul class="bullet-points">
+          <li>Crisp white paper, soft matte cover</li>
+          <li>Perfect size for easy journaling anywhere</li>
+        </ul>
+
+
+
+        <section class="faq-section">
+          <h3 class="explain-point" style="padding-top: 0.7in;">FAQ</h3>
+          <dl>
+            <dt>Is this a physical journal?</dt>
+            <dd>Yes, a beautifully printed paperback shipped to you.</dd>
+
+            <dt style="padding-top: 0.3in;">Can I gift this journal?</dt>
+            <dd>Absolutely, great for birthdays, self-care, and encouragement.</dd>
+          </dl>
+        </section>
+
+        <section class="cta-pretext" style="font-size:1.05rem; color:#444; margin-bottom:12px; margin-top:1in;">
+          Ready to start your journey to positivity?
+        </section>
+        <a href="https://amazon.com/your-product-link" target="_blank" rel="noopener" class="cta" id="bottom-cta">Buy on
+          Amazon</a>
+      </div>
+
+      <div class="preview-column">
+        <h2 style="padding-bottom: 0.3in;">Preview Notebook</h2>
+
+        <iframe class="preview-embed" src="amazon_promo_rgb.pdf" title="Journal Preview" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Floating CTA -->
+  <a href="https://amazon.com/your-product-link" target="_blank" rel="noopener" class="sticky-cta hidden"
+    id="floating-cta">Buy on Amazon</a>
+
+  <script>
+    const floatingCta = document.getElementById('floating-cta');
+    const bottomCta = document.getElementById('bottom-cta');
+
+    function onScroll() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const windowH = window.innerHeight;
+      const bottomCtaTop = bottomCta.getBoundingClientRect().top + scrollY;
+
+      // Show floating CTA unless near bottom CTA (200px threshold)
+      if (scrollY + windowH > bottomCtaTop - 200) {
+        floatingCta.classList.add('hidden');
+      } else {
+        floatingCta.classList.remove('hidden');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('load', onScroll);
+  </script>
+
+</body>
+
+</html>
